@@ -2,9 +2,10 @@ const screens=[...document.querySelectorAll('.screen')];
 const navLinks=[...document.querySelectorAll('.bottom-nav a')];
 function showScreen(){
   const id=(location.hash||'#home').slice(1);
-  const target=document.getElementById(id) || document.getElementById('home');
+  if(id==='content'){document.getElementById('content').focus();return;}
+  const target=screens.find(screen=>screen.id===id) || document.getElementById('home');
   screens.forEach(s=>s.classList.toggle('active',s===target));
-  navLinks.forEach(a=>a.classList.toggle('active',a.dataset.nav===target.id));
+  navLinks.forEach(a=>{const active=a.dataset.nav===target.id;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
   document.title=`${target.dataset.title||'Road 2 Safety'} | Road 2 Safety Navigator`;
   window.scrollTo({top:0,behavior:'instant'});
 }
@@ -16,6 +17,7 @@ const closeBtn=document.getElementById('settingsClose');
 function toggleSettings(open){settings.classList.toggle('open',open);settingsBtn.setAttribute('aria-expanded',String(open));}
 settingsBtn.addEventListener('click',()=>toggleSettings(!settings.classList.contains('open')));
 closeBtn.addEventListener('click',()=>toggleSettings(false));
+addEventListener('keydown',event=>{if(event.key==='Escape'&&settings.classList.contains('open')){toggleSettings(false);settingsBtn.focus();}});
 
 const large=document.getElementById('largeText');
 const saver=document.getElementById('dataSaver');
@@ -30,15 +32,20 @@ saver.addEventListener('change',()=>{localStorage.setItem('r2s-data-saver',saver
 document.getElementById('resetSettings').addEventListener('click',()=>{localStorage.removeItem('r2s-large-text');localStorage.removeItem('r2s-data-saver');applyPrefs();});
 applyPrefs();
 
-document.querySelectorAll('.route-btn').forEach(btn=>btn.addEventListener('click',()=>{
+const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function selectPanel(id){
   document.querySelectorAll('.nav-panel').forEach(p=>p.classList.remove('show'));
-  document.getElementById(btn.dataset.panel)?.classList.add('show');
-  document.querySelector('.panel-shell')?.scrollIntoView({behavior:'smooth',block:'start'});
-}));
+  document.getElementById(id)?.classList.add('show');
+  document.querySelectorAll('.route-btn').forEach(button=>button.setAttribute('aria-expanded',String(button.dataset.panel===id)));
+}
+document.querySelectorAll('.route-btn').forEach(btn=>{
+  btn.setAttribute('aria-controls',btn.dataset.panel);btn.setAttribute('aria-expanded','false');
+  btn.addEventListener('click',()=>{selectPanel(btn.dataset.panel);document.querySelector('.panel-shell')?.scrollIntoView({behavior:reducedMotion?'instant':'smooth',block:'start'});});
+});
 
 document.querySelectorAll('[data-open-panel]').forEach(a=>a.addEventListener('click',()=>{
   const panel=a.dataset.openPanel;
-  setTimeout(()=>{document.querySelectorAll('.nav-panel').forEach(p=>p.classList.remove('show'));document.getElementById(panel)?.classList.add('show');},40);
+  setTimeout(()=>selectPanel(panel),40);
 }));
 
 document.querySelectorAll('[data-focus-programme]').forEach(a=>a.addEventListener('click',()=>{
@@ -50,4 +57,4 @@ let installEvent; const installPrompt=document.getElementById('installPrompt');
 addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvent=e;installPrompt.hidden=false;});
 document.getElementById('installBtn').addEventListener('click',async()=>{if(!installEvent)return;installEvent.prompt();await installEvent.userChoice;installEvent=null;installPrompt.hidden=true;});
 document.getElementById('installDismiss').addEventListener('click',()=>installPrompt.hidden=true);
-if('serviceWorker' in navigator) addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+if('serviceWorker' in navigator) addEventListener('load',()=>navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).catch(()=>{}));

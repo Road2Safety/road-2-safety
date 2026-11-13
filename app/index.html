@@ -3,19 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#102820">
+<meta name="theme-color" content="#0a211b">
 <meta name="description" content="Road 2 Safety Navigator — functioning prototype for crisis navigation, recovery, evidence and reintegration.">
 <title>Road 2 Safety Navigator</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="../assets/icon-192.png">
-<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="app.css?v=4">
+<link rel="stylesheet" href="heritage.css?v=4">
 </head>
 <body>
+<svg class="icon-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs><symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3Z"/><path d="M9 20v-7h6v7"/></symbol><symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m16 8-2.5 5.5L8 16l2.5-5.5Z"/></symbol><symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="m5.5 5.5 3.6 3.6m5.8 5.8 3.6 3.6m-13 0 3.6-3.6m5.8-5.8 3.6-3.6"/></symbol><symbol id="i-leaf" viewBox="0 0 24 24"><path d="M12 21v-9m0 5C4 17 3 11 3 5c6 0 9 4 9 9m0 2c0-9 3-12 9-13 0 7-2 13-9 13Z"/></symbol><symbol id="i-heart" viewBox="0 0 24 24"><path d="m12 21-8-8C-2 6 6 0 12 6c6-6 14 0 8 7Z"/></symbol><symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M2 21v-3a7 7 0 0 1 14 0v3M17 4a3 3 0 0 1 0 6m2 4a6 6 0 0 1 3 5v2"/></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M12 21V5m0 16c-3-3-6-3-10-3V3c4 0 7 0 10 2 3-2 6-2 10-2v15c-4 0-7 0-10 3Z"/></symbol><symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 10 5-10 5L2 8Zm-10 9 10 5 10-5M2 17l10 5 10-5"/></symbol><symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2 8 3v6c0 5-4 9-8 11-4-2-8-6-8-11V5Z"/><path d="m8 12 3 3 5-6"/></symbol></defs></svg>
 <a class="skip" href="#content">Skip to content</a>
 <div class="prototype-bar">FUNCTIONING PROTOTYPE · INFORMATION ONLY · NOT AN EMERGENCY SERVICE</div>
 <header class="app-head">
   <a class="app-brand" href="#home"><img src="../assets/r2s-emblem.png" alt=""><span><b>ROAD 2 SAFETY</b><small>NAVIGATOR · SIERRA LEONE</small></span></a>
-  <button id="settingsBtn" class="round-btn" type="button" aria-controls="settings" aria-expanded="false">Aa</button>
+  <button id="settingsBtn" class="round-btn" aria-label="Display settings" type="button" aria-controls="settings" aria-expanded="false">Aa</button>
 </header>
 <aside id="settings" class="settings" aria-label="Display settings">
   <div class="settings-head"><b>Display settings</b><button id="settingsClose" type="button" aria-label="Close settings">×</button></div>
@@ -23,18 +25,25 @@
   <label class="setting-row"><span><b>Data Saver</b><small>Hide large artwork and keep essential text</small></span><input id="dataSaver" type="checkbox"></label>
   <button id="resetSettings" class="soft-btn" type="button">Reset display settings</button>
 </aside>
-<main id="content">
+<main id="content" tabindex="-1">
 <section id="home" class="screen active" data-title="Home">
   <div class="home-art">
-    <img src="../assets/navigator-art.png" alt="Road 2 Safety Navigator artwork">
-    <div class="home-art-copy"><p>ROAD 2 SAFETY NAVIGATOR</p><h1>What do you need today?</h1><span>No personal details required for this prototype.</span></div>
+    <figure class="hero-illustration"><img src="../assets/healing-pathways.png" width="1672" height="941" fetchpriority="high" alt="Full Road 2 Safety community mural, with families, care workers, a road towards the sunrise and red, gold and green geometric borders"></figure>
+    <div class="home-art-copy">
+      <p class="kicker">NAVIGATOR · SIERRA LEONE</p>
+      <h1>What do you<br>need <em>today?</em></h1>
+      <p class="hero-intro">A community-rooted road to care, recovery and opportunity.</p>
+      <div class="privacy-badge"><svg aria-hidden="true" focusable="false"><use href="#i-shield"></use></svg><span>No personal details needed to explore.</span></div>
+    </div>
   </div>
+  <div class="section-label"><h2>Choose your path.</h2><span>START HERE</span></div>
   <div class="quick-grid">
-    <a href="#navigator" class="quick primary"><span>＋</span><div><b>I need help</b><small>Start with safety and navigation</small></div></a>
-    <a href="#navigator" data-open-panel="recovery" class="quick"><span>↗</span><div><b>I am in recovery</b><small>Skills, work and reintegration</small></div></a>
-    <a href="#navigator" data-open-panel="family" class="quick"><span>♡</span><div><b>I support someone</b><small>Family and community guidance</small></div></a>
-    <a href="#about" class="quick"><span>◎</span><div><b>I can contribute</b><small>Partnerships and expertise</small></div></a>
+    <a href="#navigator" class="quick primary" data-open-panel="urgent"><span class="quick-icon"><svg aria-hidden="true" focusable="false"><use href="#i-help"></use></svg></span><div><b>I need help</b><small>Safety, support and the next step.</small></div><i class="tile-arrow" aria-hidden="true">›</i></a>
+    <a href="#navigator" class="quick recovery" data-open-panel="recovery"><span class="quick-icon"><svg aria-hidden="true" focusable="false"><use href="#i-leaf"></use></svg></span><div><b>I am in recovery</b><small>Follow-up, skills and a road forward.</small></div><i class="tile-arrow" aria-hidden="true">›</i></a>
+    <a href="#navigator" class="quick family" data-open-panel="family"><span class="quick-icon"><svg aria-hidden="true" focusable="false"><use href="#i-heart"></use></svg></span><div><b>I support someone</b><small>Guidance for family and community.</small></div><i class="tile-arrow" aria-hidden="true">›</i></a>
+    <a href="#about" class="quick contribute"><span class="quick-icon"><svg aria-hidden="true" focusable="false"><use href="#i-people"></use></svg></span><div><b>I can contribute</b><small>Share expertise. Build capacity.</small></div><i class="tile-arrow" aria-hidden="true">›</i></a>
   </div>
+  <a class="evidence-feature" href="#evidence"><svg aria-hidden="true" focusable="false"><use href="#i-book"></use></svg><div><b>Evidence &amp; project library</b><small>Understand the sources. Explore the work.</small></div><span aria-hidden="true">↗</span></a>
   <section class="road-card">
     <p class="kicker">THE ROAD BACK</p>
     <div class="road-flow"><span>CRISIS</span><i>→</i><span>CARE</span><i>→</i><span>RECOVERY</span><i>→</i><span>SKILLS</span><i>→</i><span>REINTEGRATION</span></div>
@@ -70,6 +79,7 @@
     <details id="systems"><summary><span>04</span><div><b>Top-Down Systems Work</b><small>Supply · money · governance · accountability</small></div></summary><p>Map the crisis as one connected system: public-health harm at street level, organised supply above it, financial profit behind it and institutional accountability around it.</p></details>
   </div>
   <div class="art-card"><img src="../assets/healing-pathways.png" alt="Road 2 Safety community healing pathways artwork"><div><p class="kicker pale">THE PRINCIPLE</p><h2>Do not build the response around punishing the most vulnerable point in the chain.</h2></div></div>
+  <details class="model-art"><summary>View the full Road 2 Safety model artwork</summary><img src="../assets/navigator-art.png" width="1122" height="1402" loading="lazy" alt="Road 2 Safety model: street contact, assessment and listening, referral to care, follow-up and reintegration support"></details>
 </section>
 
 <section id="evidence" class="screen" data-title="Evidence">
@@ -105,13 +115,13 @@
 </section>
 </main>
 <nav class="bottom-nav" aria-label="App navigation">
-  <a href="#home" data-nav="home"><span>⌂</span><small>Home</small></a>
-  <a href="#navigator" data-nav="navigator"><span>＋</span><small>Navigator</small></a>
-  <a href="#programmes" data-nav="programmes"><span>↗</span><small>Programmes</small></a>
-  <a href="#evidence" data-nav="evidence"><span>▤</span><small>Evidence</small></a>
-  <a href="#about" data-nav="about"><span>◎</span><small>About</small></a>
+  <a href="#home" data-nav="home"><span><svg aria-hidden="true" focusable="false"><use href="#i-home"></use></svg></span><small>Home</small></a>
+  <a href="#navigator" data-nav="navigator"><span><svg aria-hidden="true" focusable="false"><use href="#i-compass"></use></svg></span><small>Navigator</small></a>
+  <a href="#programmes" data-nav="programmes"><span><svg aria-hidden="true" focusable="false"><use href="#i-layers"></use></svg></span><small>Programmes</small></a>
+  <a href="#evidence" data-nav="evidence"><span><svg aria-hidden="true" focusable="false"><use href="#i-book"></use></svg></span><small>Evidence</small></a>
+  <a href="#about" data-nav="about"><span><svg aria-hidden="true" focusable="false"><use href="#i-people"></use></svg></span><small>About</small></a>
 </nav>
 <div id="installPrompt" class="install" hidden><div><b>Install Road 2 Safety</b><small>Add this prototype to the home screen</small></div><button id="installBtn" type="button">Install</button><button id="installDismiss" type="button" aria-label="Dismiss">×</button></div>
-<script src="app.js"></script>
+<script src="app.js?v=4"></script>
 </body>
 </html>
