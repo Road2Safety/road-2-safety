@@ -1,13 +1,15 @@
 {
+  "id":"./",
   "name":"Road 2 Safety Navigator",
   "short_name":"R2S Navigator",
   "start_url":"./#home",
+  "scope":"./",
   "display":"standalone",
-  "background_color":"#0a211b",
-  "theme_color":"#0a211b",
-  "description":"Road 2 Safety International mobile-first Navigator prototype.",
+  "background_color":"#11130f",
+  "theme_color":"#11130f",
+  "description":"Care. Recovery. Community. Opportunity. Road 2 Safety Sierra Leone information-only prototype.",
   "icons":[
-    {"src":"../assets/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
-    {"src":"../assets/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+    {"src":"../assets/street/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"../assets/street/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
   ]
 }
