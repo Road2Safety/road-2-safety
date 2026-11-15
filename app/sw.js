@@ -1,5 +1,5 @@
-const CACHE='r2s-prototype-street-20261114-5';
-const CORE=['../assets/street/country-cloth.webp','../assets/street/brand-mark.webp','./','./index.html','./app.css?v=street-4','./app.js?v=street-4','./manifest.webmanifest','./offline.html','../assets/street/street.css?v=street-4','../assets/street/grain.svg','../assets/fonts/fonts.css?v=street-3','../assets/fonts/barlow-condensed-900.woff2?v=street-3','../assets/fonts/dm-sans-400.woff2?v=street-3','../assets/fonts/dm-sans-700.woff2?v=street-3','../assets/fonts/rubik-dirt.woff2?v=street-3','../assets/street/icon-192.png','../assets/street/icon-512.png'];
+const CACHE='r2s-prototype-professional-20261115-1';
+const CORE=['../assets/street/country-cloth.webp','../assets/street/brand-mark.webp','./','./index.html','./app.css?v=professional-1','./app.js?v=street-4','./manifest.webmanifest','./offline.html','../assets/street/street.css?v=street-4','../assets/street/grain.svg','../assets/fonts/fonts.css?v=street-3','../assets/fonts/barlow-condensed-900.woff2?v=street-3','../assets/fonts/dm-sans-400.woff2?v=street-3','../assets/fonts/dm-sans-700.woff2?v=street-3','../assets/fonts/rubik-dirt.woff2?v=street-3','../assets/street/icon-192.png','../assets/street/icon-512.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
  const previous=(await caches.keys()).filter(key=>key.startsWith('r2s-prototype-')&&key!==CACHE);
